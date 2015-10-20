@@ -9,49 +9,79 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 
-    public void startSecondActivity(View view) {
-
-        Intent secondActivity = new Intent(this, MenuPrincipalNutri.class);
-        startActivity(secondActivity);
-    }
-
+    Button bLogout;
+    EditText etName, etSobrenome, etAge, etUsername, etPassword;
+    UserLocalStore userLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        etName = (EditText) findViewById(R.id.Nome);
+        etSobrenome = (EditText) findViewById(R.id.Sobrenome);
+        etAge = (EditText) findViewById(R.id.Idade);
+        etUsername = (EditText) findViewById(R.id.Usuario);
+        etPassword = (EditText) findViewById(R.id.Senha);
 
+        bLogout = (Button) findViewById(R.id.bSair);
+        bLogout.setOnClickListener(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        userLocalStore = new UserLocalStore(this);
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    protected void onStart() {
+        super.onStart();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+        if(autheticate()){
+            displayUserDetails();
+        }else{
+            startActivity(new Intent(MainActivity.this, Login.class));
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
+
+    private void displayUserDetails(){
+        User user = userLocalStore.getLoggedInUser();
+
+        etUsername.setText(user.Usuario);
+        etAge.setText(user.Idade + "");
+        etSobrenome.setText(user.Sobrenome);
+    }
+
+    private boolean autheticate(){
+        return userLocalStore.getUserLoggedIn();
+    }
+
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.bSair:
+
+                userLocalStore.ClearUserData();
+                userLocalStore.setUserLogged(false);
+
+
+
+                startActivity(new Intent(this, Login.class));
+
+                break;
+        }
+    }
+
+
+
+
 }

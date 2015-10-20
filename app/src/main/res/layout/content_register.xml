@@ -75,8 +75,8 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/bSair"
-        android:text="Sair"
+        android:id="@+id/bCadastro"
+        android:text="Cadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
