@@ -12,26 +12,31 @@
             android:gravity="center"
             android:text="Como mudar sua dieta:"
             android:layout_margin="5dp"
+            android:textSize="32dp"
             />
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:text="Vá ao menu DIETA"/>
+            android:text="Vá ao menu DIETA"
+            android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Na opção Editar"/>
+        android:text="Na opção Editar"
+        android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Escolha o item que deseja alterar"/>
+        android:text="Escolha o item que deseja alterar"
+        android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="De volta a dieta"/>
+        android:text="De volta a dieta!"
+        android:textSize="20dp"/>
 
 </LinearLayout>
