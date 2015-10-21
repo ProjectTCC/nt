@@ -1,5 +1,6 @@
 package com.nt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 public class MenuPrincipalCliente extends AppCompatActivity {
+    public void abrirAjuda(View view) {
+
+        Intent halp = new Intent(this, com.nt.Ajuda.class);
+        startActivity(halp);
+    }
+    public void abrirDieta(View view) {
+
+        Intent diet = new Intent(this, com.nt.Dietas.class);
+        startActivity(diet);
+    }
+    public void abrirLista(View view) {
+
+        Intent lista = new Intent(this, com.nt.lista.class);
+        startActivity(lista);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +32,7 @@ public class MenuPrincipalCliente extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
     }
 
 }
